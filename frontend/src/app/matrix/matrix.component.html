@@ -1,0 +1,52 @@
+<form class="main" (ngSubmit)="calcMatrix(f)" #f="ngForm" >
+
+    <div>
+        <div class="form-group">
+          <h2 class="h2_form" id="f3">Calcul de Déterminant d'une Matrice NxN</h2>
+          <label>Entrez un nombre pour le matrice carré d'ordre N'</label>
+          <input #nom type="number" min="1" max="36" value="2" style="width: 3.5em;" >
+          
+          <a (click)="createMatrix(nom.value)" class="btn btn-primary">OK</a>
+         
+            <fieldset>
+                <legend align="center">Matrix </legend>
+                <div>
+                  <div>
+                    <table>
+                      <tbody>
+                        <tr *ngFor="let lingne of matrix; let i = index">
+                          <td *ngFor="let colonne of matrix;  let j = index">
+
+                            <input #box (keyup)="onKey(box.value)" [value]="[i,j]" style="min-width: 3.8em; max-width: 3.8em;" placeholder="0" name="box" id="box" ngModel>
+                            
+                          </td>
+                         
+                           
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                  </div>
+
+                </div>
+              
+            </fieldset>
+            
+            <hr class="line-of-separation-3" data-i="1">
+            
+            <div >
+                <button type="submit" class="btn btn-primary" data-expression="determinant A" data-i="1">Calculer Déterminante</button>
+                
+            </div>
+
+            <h5>Résultat : {{resultat}}</h5> 
+            
+
+        </div>
+        <a (click)="viderTable()" class="btn btn-primary">VIDER</a>
+        <h2>Historique des résultats</h2>
+        <ul *ngFor="let matrix of historyMatrix">
+          <li>Déterminante Matrix: {{matrix.calcul}} = {{ matrix.resultat}}</li>
+        </ul>
+    </div>
+</form>
